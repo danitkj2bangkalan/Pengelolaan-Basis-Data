@@ -1,0 +1,65 @@
+select m.KodeProgramStudiMhs, count(m.NimMhs) as 'Jumlah Mahasiswa'
+from mahasiswa m, programstudi p
+where m.KodeProgramStudiMhs = p.KodeProg
+GROUP by m.KodeProgramStudiMhs
+
+select p.NamaProg, count(d.NipDosen) as 'Jumlah Dosen'
+from dosen d, programstudi p
+where m.KodeProgramStudiMhs = p.KodeProg
+GROUP by m.KodeProgramStudiMhs
+
+select d.NipDosen, d.NamaDosen
+from dosen d
+where d.NipDosen not in (
+	SELECT m.Nip
+	from mengajar m
+	where and m.TahunAjaran='20152016' and m.Semester='1'
+	)
+
+select d.NipDosen, d.NamaDosen
+from dosen d
+where d.NipDosen not in (
+	SELECT m.NipDosen
+	from perwalian p
+	where p.TahunAjaran='20152016' and p.Semester='1'
+	)
+
+select h.NimMhs, h.KodeMk, h.NilaiTugas, m.ProsTugas, h.NilaiTugas, m.ProsUts, h.NilaiUas, m.ProsUas,(h.NilaiTugas*m.ProsTugas+h.NilaiUts*m.ProsUts+h.NilaiUas*m.ProsUas) as 'Nilai Akhir',
+case
+	when h.NilaiTugas*m.ProsTugas+h.NilaiUts*m.ProsUts+h.NilaiUas*m.ProsUas<40 then'E'
+	when h.NilaiTugas*m.ProsTugas+h.NilaiUts*m.ProsUts+h.NilaiUas*m.ProsUas<56 then'D'
+	when h.NilaiTugas*m.ProsTugas+h.NilaiUts*m.ProsUts+h.NilaiUas*m.ProsUas<65 then'C'
+	when h.NilaiTugas*m.ProsTugas+h.NilaiUts*m.ProsUts+h.NilaiUas*m.ProsUas<75 then'B'
+else 'A'
+end
+from khs h, mengajar m
+where h.KodeMk=m.KodeMk and H.TahunAjaran and h.KodeSemester=m.Semester
+
+DALAM BENTUK IF
+
+select h.NimMhs, h.KodeMk, h.NilaiTugas, m.ProsTugas, h.NilaiTugas, m.ProsUts, h.NilaiUas, m.ProsUas,(h.NilaiTugas*m.ProsTugas+h.NilaiUts*m.ProsUts+h.NilaiUas*m.ProsUas) as 'Nilai Akhir',
+if(h.NilaiTugas*m.ProsTugas+h.NilaiUts*m.ProsUts+h.NilaiUas*m.ProsUas<40,'E',
+if(h.NilaiTugas*m.ProsTugas+h.NilaiUts*m.ProsUts+h.NilaiUas*m.ProsUas<56,'D', 
+if(h.NilaiTugas*m.ProsTugas+h.NilaiUts*m.ProsUts+h.NilaiUas*m.ProsUas<65,'C',
+if(h.NilaiTugas*m.ProsTugas+h.NilaiUts*m.ProsUts+h.NilaiUas*m.ProsUas<75,'B', 'A'))))as 'Nilai Huruf'
+from khs h, mengajar m
+where h.KodeMk=m.KodeMk and H.TahunAjaran and h.KodeSemester=m.Semester
+
+soal
+1. buat 10 soal yang menurut anda sulit
+2. tampilkan data" mahasiswa serta program yang tidak memprogram
+nim mhs
+nama mhs
+kode mk
+matakuliah
+program studi	
+
+create view NilaiKhsMahasiswa as(
+	select h.NimMhs, h.KodeMk, h.NilaiTugas, m.ProsTugas, h.NilaiTugas, m.ProsUts, h.NilaiUas, m.ProsUas,(h.NilaiTugas*m.ProsTugas+h.NilaiUts*m.ProsUts+h.NilaiUas*m.ProsUas) as 'Nilai Akhir',
+		if(h.NilaiTugas*m.ProsTugas+h.NilaiUts*m.ProsUts+h.NilaiUas*m.ProsUas<40,'E',
+		if(h.NilaiTugas*m.ProsTugas+h.NilaiUts*m.ProsUts+h.NilaiUas*m.ProsUas<56,'D', 
+		if(h.NilaiTugas*m.ProsTugas+h.NilaiUts*m.ProsUts+h.NilaiUas*m.ProsUas<65,'C',
+		if(h.NilaiTugas*m.ProsTugas+h.NilaiUts*m.ProsUts+h.NilaiUas*m.ProsUas<75,'B', 'A'))))as 'Nilai Huruf'
+from khs h, mengajar m
+where h.KodeMk=m.KodeMk and H.TahunAjaran and h.KodeSemester=m.Semester
+)
