@@ -63,3 +63,12 @@ create view NilaiKhsMahasiswa as(
 from khs h, mengajar m
 where h.KodeMk=m.KodeMk and H.TahunAjaran and h.KodeSemester=m.Semester
 )
+
+no2.
+SELECT mhs.namaMhs,mhs.nimMhs,m.KodeMk
+FROM matakuliah m, programstudi p,mahasiswa mhs
+WHERE mhs.nimMhs not in(
+	SELECT kr.NimMhs
+    FROM krs kr
+    WHERE kr.NimMhs = mhs.nimMhs 
+)
