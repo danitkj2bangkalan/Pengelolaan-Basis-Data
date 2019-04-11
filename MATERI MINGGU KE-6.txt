@@ -43,16 +43,8 @@ if(h.NilaiTugas*m.ProsTugas+h.NilaiUts*m.ProsUts+h.NilaiUas*m.ProsUas<56,'D',
 if(h.NilaiTugas*m.ProsTugas+h.NilaiUts*m.ProsUts+h.NilaiUas*m.ProsUas<65,'C',
 if(h.NilaiTugas*m.ProsTugas+h.NilaiUts*m.ProsUts+h.NilaiUas*m.ProsUas<75,'B', 'A'))))as 'Nilai Huruf'
 from khs h, mengajar m
-where h.KodeMk=m.KodeMk and H.TahunAjaran and h.KodeSemester=m.Semester
+where h.KodeMk=m.KodeMk and h.TahunAjaran and h.KodeSemester=m.Semester
 
-soal
-1. buat 10 soal yang menurut anda sulit
-2. tampilkan data" mahasiswa serta program yang tidak memprogram
-nim mhs
-nama mhs
-kode mk
-matakuliah
-program studi	
 
 create view NilaiKhsMahasiswa as(
 	select h.NimMhs, h.KodeMk, h.NilaiTugas, m.ProsTugas, h.NilaiTugas, m.ProsUts, h.NilaiUas, m.ProsUas,(h.NilaiTugas*m.ProsTugas+h.NilaiUts*m.ProsUts+h.NilaiUas*m.ProsUas) as 'Nilai Akhir',
@@ -64,6 +56,15 @@ from khs h, mengajar m
 where h.KodeMk=m.KodeMk and H.TahunAjaran and h.KodeSemester=m.Semester
 )
 
+soal
+1. buat 10 soal yang menurut anda sulit
+2. tampilkan data" mahasiswa serta program yang tidak memprogram
+nim mhs
+nama mhs
+kode mk
+matakuliah
+program studi	
+
 no2.
 SELECT mhs.namaMhs,mhs.nimMhs,m.KodeMk
 FROM matakuliah m, programstudi p,mahasiswa mhs
@@ -71,4 +72,50 @@ WHERE mhs.nimMhs not in(
 	SELECT kr.NimMhs
     FROM krs kr
     WHERE kr.NimMhs = mhs.nimMhs 
+) 
+ 
+no 1. menggunakan data dreamhome
+
+SELECT s.fName,s.staffNo,(s.salary<30000) as 'kurang dari 30.000$'
+FROM staff s
+
+SELECT c.fName,v.clientNo = 'CR56'
+FROM viewing v, client c
+WHERE c.clientNo = v.clientNo
+
+SELECT c.clientNo
+FROM client c
+WHERE c.clientNo not in(
+	SELECT r.clientNo
+    FROM registration r
+    WHERE c.clientNo = 'CR56'
+) 
+
+SELECT o.ownerNo
+FROM privateowner o
+WHERE o.ownerNo not in(
+	SELECT p.ownerNo
+    FROM propertyforrent p
+    WHERE p.ownerNo = ''
 )
+
+SELECT s.branchNo='B003'
+FROM staff s, branch b
+WHERE s.branchNo = b.branchNo
+
+
+SELECT s.fName,s.lName,s.sex = 'F'
+FROM staff s
+
+SELECT s.fName,s.lName,s.sex = 'M'
+FROM staff s
+
+SELECT b.branchNo,b.city = 'London' 
+FROM branch b
+
+SELECT b.branchNo,b.city != 'London' 
+FROM branch b
+
+SELECT r.branchNo = 'B003'
+FROM branch b , registration r
+WHERE r.branchNo = b.branchNo
