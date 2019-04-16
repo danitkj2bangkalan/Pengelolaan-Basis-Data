@@ -1,0 +1,130 @@
+futsal kompetisi
+
+struktur
+
+entiti:
+1.pemain -
+2.pelatih -
+3.staff -
+4.panitia_kompetisi -
+5.jenis_kelamin -
+6.lapangan -
+7.jenis_denda -
+8.provinsi -
+9.kabupaten -
+10.kecamatan -
+11.kelurahan -
+12.fakultas -
+13.progam_studi -
+form pendaftaran -
+catatan_fairplay -
+surat_ijin_pengadaan_lomba -
+
+CREATE kompetisi_futsal;
+USE kompetisi_futsal;
+
+CREATE TABLE IF NOT EXISTS jenis_kelamin(
+	kode_jenis_kelamin char(3) not null,
+    jenis_kelamin char(1) not null
+);
+
+CREATE TABLE IF NOT EXISTS provinsi(
+	kode_provinsi char(3) not null,
+    nama_provinsi varchar(15) not null
+);
+
+CREATE table if not EXISTS kabupaten(
+	kode_kabupaten char(4) not null,
+    nama_kabupaten varchar (15) not null,
+    kode_prov char(3) not null
+);
+
+CREATE table if not EXISTS kecamatan(
+	kode_kecamatan char(4) not null,
+    nama_kecamatan varchar(15) not null,
+    kode_kab char(4) not null
+);
+
+CREATE TABLE IF NOT EXISTS kelurahan(
+	kode_keluharan char(4) not null,
+    nama_kelurahan varchar(15) NOT null,
+    kode_kec char(4) NOT null,
+    kode_pos char(6) NOT null
+);
+
+CREATE TABLE IF NOT EXISTS fakultas(
+	kode_fakultas char(3) not null,
+    nama_fakultas varchar(15) not null
+);
+
+CREATE TABLE IF NOT EXISTS prgram_studi(
+	kode_program_studi char(3) not null,
+    nama_program_studi varchar(15) NOT null,
+    kode_fak CHAR(3) NOT null
+);
+
+CREATE TABLE IF NOT EXISTS pemain(
+	nim char(12) not null,
+    nama varchar(30) NOT null,
+    tanggal_lahir date not null,
+    tempat_lahir char(4) not null,
+    kode_prodi char(3) not null
+);
+
+CREATE TABLE IF NOT EXISTS pelatih(
+	nim char(12) not null,
+    nama varchar(30) NOT null,
+    tanggal_lahir date not null,
+    tempat_lahir char(4) not null,
+    kode_prodi char(3) not null
+);
+
+CREATE TABLE IF NOT EXISTS staff(
+	nim char(12) not null,
+    nama varchar(30) NOT null,
+    tanggal_lahir date not null,
+    tempat_lahir char(4) not null,
+    kode_prodi char(3) not null
+);
+
+CREATE TABLE IF NOT EXISTS panitia(
+	nim char(12) not null,
+    nama varchar(30) NOT null,
+    tanggal_lahir date not null,
+    tempat_lahir char(4) not null,
+    kode_prodi char(3) not null
+);
+
+CREATE TABLE if NOT EXISTS lapangan(
+	kode_lapangan char(3) not null,
+    nama_lapangan varchar(15) not null,
+    alamat_lapangan char(4) not null
+);
+
+CREATE TABLE IF NOT EXISTS jenis_denda(
+	kode_denda char(2) not null,
+    jenis_denda varchar (12) not null,
+    nilai_denda varchar (7) not null
+);
+
+CREATE TABLE IF NOT EXISTS catatan_fairplay(
+	nim_mhs char(12) NOT null,
+    kode_denda char(2) not null,
+	tanggal date NOT null
+);
+
+CREATE TABLE IF NOT EXISTS SK(
+	nomor_sk char (20) NOT null,
+    nip_dosen char (20) NOT null,
+    tt_panitia char (12) not null
+);
+
+CREATE TABLE IF NOT EXISTS form_pendaftaran (
+	nim_mahasiswa char(12)not null,
+    alamat_kecamatan char(4) not null,
+    alamat_kabupaten char(4) not null,
+    alamat_kelurahan char(4) NOT null,
+    kode_jk char(2) not null,
+    kode_prog char(3) not null,
+    kode_fak_f char(3) not null
+);
