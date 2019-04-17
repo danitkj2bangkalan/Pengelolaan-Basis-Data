@@ -30,10 +30,27 @@ CREATE TABLE IF NOT EXISTS jenis_kelamin(
     jenis_kelamin char(1) not null
 );
 
+INSERT INTO `jenis_kelamin`(`kode_jenis_kelamin`,`jenis_kelamin`) VALUES 
+(`j1`,`M`),
+(`j2`,`F`);
+
 CREATE TABLE IF NOT EXISTS provinsi(
 	kode_provinsi char(3) not null,
     nama_provinsi varchar(15) not null
 );
+
+INSERT INTO `provinsi`(`kode_provinsi`,`nama_provinsi`)VALUES
+
+(`p1`,`JAWA TIMUR`),
+(`p2`,`JAWA TENGAH`),
+(`p3`,`DI YOGYAKARTA`),
+(`p4`,`JAWA BARAT`),
+(`p5`,`DKI JAKARTA`),
+(`p6`,`BANTEN`),
+(`p7`,`BALI`),
+(`p8`,`NUSA TENGGARA BARAT`),
+(`p9`,`NUSA TENGGARA TIMUR`),
+(`p10`,`NANGROE ACEH DARUSSALAM`);
 
 CREATE table if not EXISTS kabupaten(
 	kode_kabupaten char(4) not null,
@@ -41,11 +58,37 @@ CREATE table if not EXISTS kabupaten(
     kode_prov char(3) not null
 );
 
+INSERT INTO `kabupaten` (`kode_kabupaten`,`nama_kabupaten`,`kode_prov`)VALUES
+
+(`kb1`,`Bangkalan`,`p1`),
+(`kb2`,`Sampang`,`p1`),
+(`kb3`,`Pamekasan`,`p1`),
+(`kb4`,`Sumenep`,`p1`),
+(`kb5`,`Sidoarjo`,`p1`),
+(`kb6`,`Jepara`,`p2`),
+(`kb7`,`Tuban`,`p1`),
+(`kb8`,`Lamongan`,`p1`),
+(`kb9`,`Tanggerang`,`p4`),
+(`kb10`,`Denpasar`,`p7`);
+
 CREATE table if not EXISTS kecamatan(
 	kode_kecamatan char(4) not null,
     nama_kecamatan varchar(15) not null,
     kode_kab char(4) not null
 );
+
+INSERT INTO `kecamatan`(`kode_kecamatan`,`nama_kecamatan`,`kode_kab`) VALUES
+
+(`kc1`,`Bangkalan`,`kb1`),
+(`kc2`,`Kamal`,`kb1`),
+(`kc3`,`Burneh`,`kb1`),
+(`kc4`,`Kwanyar`,`kb1`),
+(`kc5`,`Gedangan`,`kb5`),
+(`kc6`,`Karang Penang`,`kb2`),
+(`kc7`,`Porong`,`kb5`),
+(`kc8`,`Sedati`,`kb5`),
+(`kc9`,`Semanding`,`kb7`),
+(`kc10`,`Tanah Merah`,`kb1`);
 
 CREATE TABLE IF NOT EXISTS kelurahan(
 	kode_keluharan char(4) not null,
@@ -54,16 +97,52 @@ CREATE TABLE IF NOT EXISTS kelurahan(
     kode_pos char(6) NOT null
 );
 
+INSERT INTO `kelurahan`(`kode_kelurahan`,`nama_kelurahan`,`kode_kec`,`kode_pos`) VALUES
+(`kl1`,`Mlajah`,`kc1`,`345687`),
+(`kl2`,`Pangeranan`,`kc1`,`323241`),
+(`kl3`,`Demangan`,`kc1`,`435363`),
+(`kl4`,`Jagalan`,`kc1`,`345678`),
+(`kl5`,`Dumajah`,`kc10`,`376242`),
+(`kl6`,`Buddan`,`kc10`,`329848`),
+(`kl7`,`Banyuajuh`,`kc2`,`762746`),
+(`kl8`,`Keraton`,`kc1`,`735682`),
+(`kl9`,`Kemayoran`,`kc1`,`346257`),
+(`kl10`,`Ujung Piring`,`kc1`,`123456`);
+
 CREATE TABLE IF NOT EXISTS fakultas(
 	kode_fakultas char(3) not null,
     nama_fakultas varchar(15) not null
 );
+
+INSERT INTO `fakultas`(`kode_fakultas`,`nama_fakultas`) VALUES 
+(`f1`,`Teknik`),
+(`f2`,`Pendidikan`),
+(`f3`,`Hukum`),
+(`f4`,`Pertanian`),
+(`f5`,`Ilmu Sosial dan Ilmu Budaya`),
+(`f6`,`Ekonomi`),
+(`f7`,`Kedokteran`),
+(`f8`,`Kelautan`),
+(`f9`,`Ilmu Peternakan`),
+(`f10`,`Ilmu Kesehatan`);
 
 CREATE TABLE IF NOT EXISTS program_studi(
 	kode_program_studi char(3) not null,
     nama_program_studi varchar(15) NOT null,
     kode_fak CHAR(3) NOT null
 );
+
+INSERT INTO `program_studi`(`kode_program_studi`,`nama_program_studi`,`kode_fak`) VALUES
+(`pr1`,`Teknik Informatika`,`f1`),
+(`pr2`,`Teknik Industri`,`f1`),
+(`pr3`,`Sistem Informasi`,`f1`),
+(`pr4`,`Teknik Mesin`,`f1`),
+(`pr5`,`Teknik Elektro`,`f1`),
+(`pr6`,`Teknik Mekatronika`,`f1`),
+(`pr7`,`Pendidikan Informatika`,`f2`),
+(`pr8`,`Pendidikan Matematika`,`f2`),
+(`pr9`,`Pendidikan Sastra Indonesia`,`f2`),
+(`pr10`,`Pendidikan Sastra Inggris`,`f2`);
 
 CREATE TABLE IF NOT EXISTS mahasiswa(
 	nim char(12) not null, 
