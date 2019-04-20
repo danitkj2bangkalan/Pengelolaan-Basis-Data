@@ -88,12 +88,12 @@ INSERT INTO `kecamatan`(`kode_kecamatan`,`nama_kecamatan`,`kode_kab`) VALUES
 (`kc6`,`Karang Penang`,`kb2`),
 (`kc7`,`Porong`,`kb5`),
 (`kc8`,`Sedati`,`kb5`),
-(`kc9`,`Semanding`,`kb7`),
+(`kc9`,`Tuban`,`kb7`),
 (`kc10`,`Tanah Merah`,`kb1`),
 (`kc11`,`Tlanakan`,`kb3`),
 (`kc12`,`Sapudi`,`kb4`),
 (`kc13`,`Sapeken`,`kb4`),
-(`kc14`,`Majong`,`kb6`),
+(`kc14`,`Mayong`,`kb6`),
 (`kc15`,`Tikung`,`kb8`),
 (`kc16`,`Tangerang Selatan`,`kb9`),
 (`kc17`,`Bedugul`,`kb10`);
@@ -102,20 +102,34 @@ CREATE TABLE IF NOT EXISTS kelurahan(
 	kode_keluharan char(4) not null,
     nama_kelurahan varchar(15) NOT null,
     kode_kec char(4) NOT null,
-    kode_pos char(6) NOT null
+    kode_pos char(5) NOT null
 );
 
 INSERT INTO `kelurahan`(`kode_kelurahan`,`nama_kelurahan`,`kode_kec`,`kode_pos`) VALUES
-(`kl1`,`Mlajah`,`kc1`,`345687`),
-(`kl2`,`Pangeranan`,`kc1`,`323241`),
-(`kl3`,`Demangan`,`kc1`,`435363`),
-(`kl4`,`Jagalan`,`kc1`,`345678`),
-(`kl5`,`Dumajah`,`kc10`,`376242`),
-(`kl6`,`Buddan`,`kc10`,`329848`),
-(`kl7`,`Banyuajuh`,`kc2`,`762746`),
-(`kl8`,`Keraton`,`kc1`,`735682`),
-(`kl9`,`Kemayoran`,`kc1`,`346257`),
-(`kl10`,`Ujung Piring`,`kc1`,`123456`);
+(`kl1`,`Mlajah`,`kc1`,`34568`),
+(`kl2`,`Pangeranan`,`kc1`,`32324`),
+(`kl3`,`Demangan`,`kc1`,`43536`),
+(`kl4`,`Jagalan`,`kc1`,`34567`),
+(`kl5`,`Dumajah`,`kc10`,`37624`),
+(`kl6`,`Buddan`,`kc10`,`32984`),
+(`kl7`,`Banyuajuh`,`kc2`,`76274`),
+(`kl8`,`Keraton`,`kc1`,`73568`),
+(`kl9`,`Kemayoran`,`kc1`,`34625`),
+(`kl10`,`Ujung Piring`,`kc1`,`12345`),
+(`kl11`,`Langkab`,`kc3`,`31244`),
+(`kl12`,`Sendang`,`kc4`,`35682`),
+(`kl13`,`Ketajen`,`kc5`,`28774`),
+(`kl14`,`Karang Penang Onjur`,`kc6`,`27492`),
+(`kl15`,`Porong`,`kc7`,`43789`),
+(`kl16`,`Sedati Gede`,`kc8`,`67138`),
+(`kl17`,`Batu Retno`,`kc9`,`61537`),
+(`kl18`,`Larangan Tokol`,`kc11`,`62892`),
+(`kl19`,`Sapudi`,`kc12`,`62801`),
+(`kl20`,`Sapeken`,`kc13`,`65099`),
+(`kl21`,`Mayong`,`kc14`,`68932`),
+(`kl22`,`Jotosanur`,`kc15`,`67092`),
+(`kl23`,`Tangerang`,`kc16`,`60248`),
+(`kl24`,`Bedugul`,`kc17`,`60134`);
 
 CREATE TABLE IF NOT EXISTS fakultas(
 	kode_fakultas char(3) not null,
@@ -610,26 +624,26 @@ INSERT INTO `SK`(`nomor_sk`,`nip_dosen`,`keterangan`) VALUES
 
 CREATE TABLE IF NOT EXISTS form_pendaftaran (
 	nim_mahasiswa char(12)not null,
-    alamat_kecamatan char(4) not null,
     alamat_kabupaten char(4) not null,
+    alamat_kecamatan char(4) not null,    
     alamat_kelurahan char(4) NOT null,
     kode_jk char(2) not null,
     kode_prog char(3) not null,
     kode_fak_f char(3) not null,
-	Kode_team char(3) not null
+    Kode_team char(3) not null
 );
 
-INSERT INTO `form_pendaftaran`(`nim_mahasiswa`,`alamat_kecamatan`,`alamat_kabupaten`,`alamat_kelurahan`,`kode_jk`,`kode_prog`,`kode_fak_f`,`kode_team`) VALUES
-(`170411110101`,`Zoe F`,`12-11-1999`,`kb4`,`pr1`),
-(`170411110140`,`Rendy D`,`30-11-1999`,`kb9`,`pr1`),
-(`170411110139`,`Alfarizi`,`09-09-1999`,`kb8`,`pr1`),
-(`170411110138`,`Fairiz`,`08-08-1999`,`kb7`,`pr1`),
-(`170411110137`,`Adim`,`17-07-1999`,`kb4`,`pr1`),
-(`170411110136`,`Syaiful F`,`08-10-1999`,`kb5`,`pr1`),
-(`170411110135`,`Gani Abdul`,`17-03-1999`,`kb1`,`pr1`),
-(`170411110134`,`Deni S`,`15-02-1998`,`kb2`,`pr1`),
-(`170411110133`,`Zulham`,`12-01-1999`,`kb3`,`pr1`),
-(`170411110132`,`Hanif D`,`04-08-1999`,`kb10`,`pr1`),
+INSERT INTO `form_pendaftaran`(`nim_mahasiswa`,`alamat_kabupaten`,`alamat_kecamatan`,`alamat_kelurahan`,`kode_jk`,`kode_prog`,`kode_fak_f`,`kode_team`) VALUES
+(`170411110101`,`kb4`,`kc12`,`kl19`,`j1`,`pr1`,`f1`,`t1`),
+(`170411110140`,`kb9`,`kc16`,`kl23`,`j1`,`pr1`,`f1`,`t1`),
+(`170411110139`,`kb8`,`kc15`,`kl22`,`j1`,`pr1`,`f1`,`t1`),
+(`170411110138`,`kb7`,`kc9`,`kl17`,`j1`,`pr1`,`f1`,`t1`),
+(`170411110137`,`kb4`,`kc12`,`kl19`,`j1`,`pr1`,`f1`,`t1`),
+(`170411110136`,`kb5`,`kc5`,`kl13`,`j1`,`pr1`,`f1`,`t1`),
+(`170411110135`,`kb1`,`kc2`,`kl7`,`j1`,`pr1`,`f1`,`t1`),
+(`170411110134`,`kb2`,`kc6`,`kl14`,`j1`,`pr1`,`f1`,`t1`),
+(`170411110133`,`kb3`,`kc11`,`kl18`,`j1`,`pr1`,`f1`,`t1`),
+(`170411110132`,`kb10`,`kc17`,`kl24`,`j1`,`pr1`,`f1`,`t1`),
 (`170411110131`,`Taufa J`,`12-11-1999`,`kb9`,`pr1`),
 (`170411110130`,`Husein Imam`,`15-12-1998`,`kb8`,`pr1`),
 (`170411110129`,`Sandy S`,`19-12-1999`,`kb7`,`pr1`),
@@ -745,4 +759,4 @@ ALTER TABLE `lapangan`
 ALTER TABLE `jenis_denda`
 	ADD PRIMARY(`kode_denda`);
 ALTER TABLE `SK`
-ADD PRIMARY(`nomor_sk`);
+	ADD PRIMARY(`nomor_sk`);
