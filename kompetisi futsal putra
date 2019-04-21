@@ -22,7 +22,6 @@ mahasiswa-
 15.catatan_fairplay -
 16.surat_ijin_pengadaan_lomba -
 
-
 CREATE kompetisi_futsal;
 USE kompetisi_futsal;
 
@@ -741,22 +740,71 @@ ALTER TABLE `jenis_kelamin`
 ALTER TABLE `provinsi`
 	ADD PRIMARY KEY(`kode_provinsi`);
 ALTER TABLE `kabupaten`
-	ADD PRIMARY KEY(`kode_kabupaten`);
+	ADD PRIMARY KEY(`kode_kabupaten`),
+	ADD KEY `Kode_provinsi_FK` (`kode_prov`);
+
 ALTER TABLE `kecamatan`
-	ADD PRIMARY KEY(`kode_kecamatan`);
+	ADD PRIMARY KEY(`kode_kecamatan`),
+	ADD KEY `Kode_kabupaten_FK` (`kode_kab`);
+
 ALTER TABLE `kelurahan`
-	ADD PRIMARY(`kode_kelurahan`);
+	ADD PRIMARY KEY(`kode_kelurahan`),
+	ADD KEY `Kode_kelurahan_FK` (`kode_kec`);
+
 ALTER TABLE `fakultas`
-	ADD PRIMARY(`kode_fakultas`);
+	ADD PRIMARY KEY(`kode_fakultas`);
+
 ALTER TABLE `program_studi`
-	ADD PRIMARY(`kode_program_studi`);
+	ADD PRIMARY KEY(`kode_program_studi`),
+	ADD KEY `kode_fakultas_FK` (`kode_fak`);
+
 ALTER TABLE `mahasiswa`
-	ADD PRIMARY(`nim`);
+	ADD PRIMARY KEY(`nim`),
+	ADD KEY `kode_tempat_lahir_FK` (`tempat_lahir`),
+	ADD KEY `kode_program_studi_mahasiswa_FK` (`kode_prodi`);
+
 ALTER TABLE `tim`
-	ADD PRIMARY(`kode_tim`);
+	ADD PRIMARY KEY(`kode_tim`),
+	ADD KEY `kode_program_studi_tim_FK` (`kode_prodi_t`);
+
+ALTER TABLE `pemain`
+	ADD PRIMARY KEY(`nim_pemain`),
+	ADD KEY `kode_tim_pemain_FK` (`kode_tim_p`);
+
+ALTER TABLE `pelatih`
+	ADD PRIMARY KEY(`nim_pelatih`),
+	ADD KEY `kode_tim_pelatih_FK` (`kode_tim_pelatih`);
+
+ALTER TABLE `ofisial`
+	ADD PRIMARY KEY(`nim_ofisial`),
+	ADD KEY `kode_tim_pelatih_FK` (`kode_tim_ofisial`);
+
+ALTER TABLE `panitia`
+	ADD PRIMARY KEY(`nim_panitia`);
+
 ALTER TABLE `lapangan`
-	ADD PRIMARY(`kode_lapangan`);
+	ADD PRIMARY KEY(`kode_lapangan`);
+	ADD KEY `kode_alamat_lapangan_FK` (`alamat_lapangan`);
+
 ALTER TABLE `jenis_denda`
-	ADD PRIMARY(`kode_denda`);
+	ADD PRIMARY KEY(`kode_denda`);
+
+ALTER TABLE `catatan_fairplay`
+	ADD PRIMARY KEY(`nim_mhs`),
+	ADD KEY `kode_denda_FK` (`kode_denda`); 
+
 ALTER TABLE `SK`
-	ADD PRIMARY(`nomor_sk`);
+	ADD PRIMARY KEY(`nomor_sk`);
+
+ALTER TABLE `form_pendaftaran`
+	ADD PRIMARY KEY(`nim_mahasiswa`),
+	ADD KEY `alamat_kabupaten_FK` (`alamat_kabupaten`),
+	ADD KEY `alamat_kecamatan_FK` (`alamat_kecamatan`),
+	ADD KEY `alamat_kelurahan_FK` (`alamat_kelurahan`),
+	ADD KEY `jenis_kelamin_FK` (`kode_jk`),
+	ADD KEY `kode_program_studi_registrasi_FK` (`kode_prog`),
+	ADD KEY `kode_fakultas_registrasi_FK` (`kode_fak_f`),
+	ADD KEY `kode_tim_registrasi_FK` (`kode_team`);
+
+
+
